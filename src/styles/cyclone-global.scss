@@ -1,0 +1,43 @@
+/* src/styles/global.scss */
+
+@use "./cyclone-fonts";
+@use "./cyclone-variables" as vars;
+@use "./cyclone-reset";
+
+/* Root-level color scheme and font-smoothing */
+:root {
+  color-scheme: light dark;
+
+  /* Default text and background colors (dark mode) */
+  color: var(--color-mashumaro);
+  background-color: var(--color-dusk);
+}
+
+html {
+  font-family: vars.$font-pixeBoy;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--color-dusk);
+    background-color: var(--color-mashumaro);
+  }
+}
+
+/* Dark mode overrides (reinforces defaults) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--color-mashumaro);
+    background-color: var(--color-dusk);
+  }
+}

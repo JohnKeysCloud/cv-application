@@ -1,0 +1,11 @@
+.logo {
+  aspect-ratio: 1 / 1;
+  filter: drop-shadow(0 0 8px var(--color-binky));
+  padding-bottom: 1.5rem;
+  width: 333px;
+}
+
+.heading-wrapper {
+  display: grid;
+  place-items: center;
+}

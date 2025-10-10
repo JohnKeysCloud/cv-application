@@ -1,0 +1,30 @@
+/* src/styles/variables.scss */
+
+:root {
+  /* MAIN COLORS */
+  --color-kuro: black;
+  --color-dusk: #212121;
+  --color-mashumaro: #fffce8;
+  --color-sora: #87ceeb;
+
+  /* PUCK-MAN COLORS */
+  --color-binky: #e91113;
+  --color-pinky: #dc80b1;
+  --color-inky: #01f0ef;
+  --color-clyde: #fe8b0d;
+  --color-sue: #9d199d;
+  --color-funky: #7fff00;
+  --color-pacman: #ffea54;
+  --color-edible-ghost: #2121DE;
+}
+
+/* Font stacks */
+$font-cyclone: 'cyclone', system-ui, Avenir, 'Helvetica Neue', sans-serif;
+$font-pixeBoy: 'pixeBoy', system-ui, Avenir, 'Helvetica Neue', sans-serif;
+
+/* Mixins */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
