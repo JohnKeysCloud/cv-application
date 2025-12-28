@@ -1,0 +1,164 @@
+@keyframes ghostGlow {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+// ---
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    animation: none;
+    box-shadow:
+          0 0 18px var(--glass-glow),
+          0 0 28px var(--glass-glow);
+    content: '';
+    inset: 0;
+    opacity: 0.5;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    animation: ghostGlow 3s ease-in-out infinite;
+  }
+}
+
+.theme-light {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-fallback: rgba(255, 255, 255, 0.1);
+  --glass-glow: rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.theme-binky {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(233, 17, 19, 0.18),
+    rgba(233, 17, 19, 0.08)
+  );
+  --glass-border: rgba(233, 17, 19, 0.35);
+  --glass-fallback: rgb(233, 17, 19);
+  --glass-glow: rgb(233, 17, 19);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 28px rgba(233, 17, 19, 0.45);
+}
+
+.theme-pinky {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(220, 128, 177, 0.20),
+    rgba(220, 128, 177, 0.08)
+  );
+  --glass-border: rgba(220, 128, 177, 0.38);
+  --glass-fallback: rgb(220, 128, 177);
+  --glass-glow: rgb(220, 128, 177);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 26px rgba(220, 128, 177, 0.45);
+}
+
+.theme-inky {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(1, 240, 239, 0.16),
+    rgba(1, 240, 239, 0.06)
+  );
+  --glass-border: rgba(1, 240, 239, 0.32);
+  --glass-fallback: rgb(1, 240, 239);
+  --glass-glow: rgb(1, 240, 239);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(1, 240, 239, 0.5);
+}
+
+.theme-clyde {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(254, 139, 13, 0.20),
+    rgba(254, 139, 13, 0.08)
+  );
+  --glass-border: rgba(254, 139, 13, 0.36);
+  --glass-fallback: rgb(254, 139, 13);
+  --glass-glow: rgb(254, 139, 13);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 26px rgba(254, 139, 13, 0.45);
+}
+
+.theme-sue {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(157, 25, 157, 0.18),
+    rgba(157, 25, 157, 0.08)
+  );
+  --glass-border: rgba(157, 25, 157, 0.35);
+  --glass-fallback: rgb(157, 25, 157);
+  --glass-glow: rgb(157, 25, 157);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 28px rgba(157, 25, 157, 0.45);
+}
+
+.theme-funky {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(127, 255, 0, 0.18),
+    rgba(127, 255, 0, 0.06)
+  );
+  --glass-border: rgba(127, 255, 0, 0.34);
+  --glass-fallback: rgb(127, 255, 0);
+  --glass-glow: rgb(127, 255, 0);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(127, 255, 0, 0.5);
+}
+
+.theme-pacman {
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 234, 84, 0.22),
+    rgba(255, 234, 84, 0.10)
+  );
+  --glass-border: rgba(255, 234, 84, 0.4);
+  --glass-fallback: rgb(255, 234, 84);
+  --glass-glow: rgb(255, 234, 84);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 0 32px rgba(255, 234, 84, 0.55);
+}
+
+
+

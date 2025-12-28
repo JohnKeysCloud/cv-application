@@ -1,0 +1,22 @@
+#draft-section {
+  border: 3px solid yellow;
+}
+
+#general-draft {
+  border: 1px solid red;
+}
+
+#education-draft {
+  border: 1px solid magenta;
+}
+
+#practical-draft {
+  border: 1px solid chartreuse;
+}
+
+.draft-container {
+  background-color: black;
+}
+
+//youAreHere
+// body:has()

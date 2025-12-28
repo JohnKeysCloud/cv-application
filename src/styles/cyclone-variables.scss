@@ -22,9 +22,3 @@
 $font-cyclone: 'cyclone', system-ui, Avenir, 'Helvetica Neue', sans-serif;
 $font-pixeBoy: 'pixeBoy', system-ui, Avenir, 'Helvetica Neue', sans-serif;
 
-/* Mixins */
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

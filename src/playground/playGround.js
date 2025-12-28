@@ -1,3 +1,4 @@
+
 function curry(func) {
   return function curried(...args) {
     if (args.length >= func.length) {
@@ -13,5 +14,6 @@ function curry(func) {
 function useState(initalValue) {
   let value = initalValue;
 
-  return [value, (newValue) => value = newValue ]
+  return [value, (newValue) => value = newValue];
 }
+

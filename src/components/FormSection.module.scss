@@ -1,0 +1,19 @@
+/* src/components/FormSection.module.scss */
+
+.form {
+  border-radius: 16px;
+  padding: 4px 8px;
+
+  &::before,
+  &::after {
+    border-radius: inherit;
+  }
+}
+
+.button {
+  border: 1px solid white;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.2em 0.44em;
+  cursor: pointer;
+}

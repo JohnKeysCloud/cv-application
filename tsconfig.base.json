@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    /* ===== Core Build Settings ===== */
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+
+    /* ===== Path Aliases ===== */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    /* ===== Strictness ===== */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* ===== Extra Strictness (beyond `strict: true`) ===== */
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "useUnknownInCatchVariables": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    /* ===== Code Hygiene ===== */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+
+    /* ===== Libraries ===== */
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  }
+}

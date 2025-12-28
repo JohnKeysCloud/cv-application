@@ -1,3 +1,5 @@
+// utils/get-root.ts
+
 export const getRootElement = (id: string): HTMLElement =>
   (document.getElementById(id) as HTMLElement) ??
   (() => {

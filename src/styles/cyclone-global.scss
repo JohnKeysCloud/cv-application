@@ -3,6 +3,9 @@
 @use "./cyclone-fonts";
 @use "./cyclone-variables" as vars;
 @use "./cyclone-reset";
+@use "./cyclone-animations.scss";
+@use "./cyclone-glass.scss";
+@use "./cyclone-mixins.scss" as mixins;
 
 /* Root-level color scheme and font-smoothing */
 :root {
@@ -24,6 +27,17 @@ html {
 body {
   display: grid;
   place-items: center;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  position: fixed;
+  inset: 0 auto 0 0;
+  height: 100vh;
+
 }
 
 /* Light mode overrides */
