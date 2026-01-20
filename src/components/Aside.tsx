@@ -5,8 +5,11 @@ import {
   PRACTICAL_EXPERIENCE,
 } from '../data/formData';
 import type { FormValues } from '@/types/cv';
+import clsx from 'clsx';
 
 interface AsideProps {
+  id: string;
+  isOpen: boolean;
   updateGeneralDraft: (
     data: FormValues<typeof GENERAL_INFORMATION>
   ) => void;
@@ -28,6 +31,8 @@ interface AsideProps {
 }
 
 export default function Aside({
+  id,
+  isOpen,
   updateGeneralDraft,
   updateEducationalDraft,
   updatePracticalDraft,
@@ -36,7 +41,12 @@ export default function Aside({
   addPracticalExperience,
 }: AsideProps) {
   return (
-    <aside>
+    <aside
+      id={id}
+      className={clsx(!isOpen && 'closed')}
+      role="region"
+      aria-label="CV editor"
+    >
       <FormSection
         title="General Information"
         fields={GENERAL_INFORMATION}

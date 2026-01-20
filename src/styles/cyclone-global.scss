@@ -14,6 +14,9 @@
   /* Default text and background colors (dark mode) */
   color: var(--color-mashumaro);
   background-color: var(--color-dusk);
+
+  // Dependencies
+  --nav-height: 50px; // for fixed element top start point
 }
 
 html {
@@ -25,19 +28,47 @@ html {
 }
 
 body {
+  @include mixins.neutral-background(dark);
+
   display: grid;
-  place-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  z-index: 0;
+}
+
+nav {
+  @include mixins.frosted-gradient(to bottom, dark);
+
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+  height: var(--nav-height);
+  padding: 16px;
+  position: relative;
+  z-index: 2; // necessary
 }
 
 aside {
+  border: 2px solid red;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  opacity: 1;
+  overflow: scroll;
   padding: 16px;
+  pointer-events: all;
   position: fixed;
   inset: 0 auto 0 0;
-  height: 100vh;
+  min-height: 100dvh;
+  padding-top: calc(var(--nav-height) + 16px);
+  transition: opacity 1s ease-in-out;
+  width: 100vw;  // fallback
+  width: 100dvw; // modern browsers
+  z-index: 1; // not necessary - declared to be explicit
 
+  &.closed {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 /* Light mode overrides */
@@ -45,6 +76,13 @@ aside {
   :root {
     color: var(--color-dusk);
     background-color: var(--color-mashumaro);
+  }
+
+  body {
+    @include mixins.neutral-background(light);
+  }
+  nav {
+    @include mixins.frosted-gradient(to bottom, light);
   }
 }
 
@@ -54,4 +92,15 @@ aside {
     color: var(--color-mashumaro);
     background-color: var(--color-dusk);
   }
+
+  body {
+    @include mixins.neutral-background(dark);
+  }
+
+  nav {
+    @include mixins.frosted-gradient(to bottom, dark);
+  }
 }
+
+// desktop styles
+// @media (min-width: 1024px) { ... }

@@ -4,23 +4,60 @@
   align-items: center;
 }
 
-@mixin glass-base {
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+// -----------------------------
+// Frosted Glass Gradient Mixins
+// -----------------------------
+
+/// Mixin: frosted-gradient
+/// @param $direction - direction of gradient (default: to bottom)
+/// @param $theme - 'light' or 'dark' (default: 'light')
+@mixin frosted-gradient($direction: to bottom, $theme: light) {
+  @if $theme == light {
+    background: linear-gradient(
+      $direction,
+      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  } @else if $theme == dark {
+    background: linear-gradient(
+      $direction,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0)
+    );
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+
 }
 
-@mixin glass-light {
-  @include glass-base;
+// -----------------------------
+// Neutral Background Gradients
+// -----------------------------
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.08)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+/// Mixin: neutral-background
+/// @param $theme - 'light' or 'dark' (default: 'light')
+/// @param $direction - gradient direction (default: to bottom)
+@mixin neutral-background($theme: light, $direction: to bottom) {
+  @if $theme == light {
+    background: linear-gradient(
+      $direction,
+      rgba(245, 245, 245, 0.95),
+      rgba(230, 230, 230, 0.95)
+    );
+  } @else if $theme == dark {
+    background: linear-gradient(
+      $direction,
+      rgba(20, 20, 25, 0.95),
+      rgba(35, 35, 45, 0.95)
+    );
+  }
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }

@@ -3,6 +3,7 @@ import Aside from './components/Aside';
 import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from './data/formData';
 import type { DraftData, CVData, FormValues } from './types/cv';
 import { Main } from './components/Main';
+import { Toggle } from './components/toggleButton';
 
 function App() {
   const [cvData, setCvData] = useState<CVData>({
@@ -11,7 +12,6 @@ function App() {
     practicalExperience: [],
   });
 
-  // ? should i use one mega state or should I break it down?
   const [draftData, setDraftData] = useState<DraftData>({
     generalDraft: {
       name: null,
@@ -87,9 +87,26 @@ function App() {
     }));
   };
 
+  const [isActive, setIsActive] = useState(false);
+
+  const ASIDE_ID = 'aside';
+
+  const toggleProps = {
+    controlledElementId: ASIDE_ID,
+    isControlledElementActive: isActive,
+    onClick: () => setIsActive(prev => !prev),
+    classNames: ['aside-toggle']
+  }
+
   return (
     <>
+      <nav>
+        <Toggle {...toggleProps} />
+        {/* TODO: Add view/save as photo/pdf buttons */}
+      </nav>
       <Aside
+        id={ASIDE_ID}
+        isOpen={isActive}
         updateGeneralDraft={updateGeneralDraft}
         updateEducationalDraft={updateEducationalDraft}
         updatePracticalDraft={updatePracticalDraft}
@@ -97,7 +114,7 @@ function App() {
         addEducationalExperience={addEducationalExperience}
         addPracticalExperience={addPracticalExperience}
       />
-      <Main cvData={cvData} draftData={draftData}/>
+      <Main cvData={cvData} draftData={draftData} />
     </>
   );
 }

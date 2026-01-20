@@ -8,3 +8,6 @@ export function createStateFromKeys<const K extends readonly string[]>(
     string | null
   >;
 }
+
+export const concatenateStringArray = (arrayOfStrings: string[]): string =>
+  arrayOfStrings.join(' ');

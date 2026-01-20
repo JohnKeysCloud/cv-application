@@ -1,0 +1,120 @@
+:root {
+  --background: initial;
+  --size: 25px;
+  --hamburger-bar-color: white;
+  --hamburger-bar-height: 3px;
+  --hamburger-bar-radius: 100vw;
+  --hamburger-bar-transition: 0.333s;
+  --badge-background: var(--background);
+  --badge-text-color: white;
+}
+
+// Light mode override 
+@media (prefers-color-scheme: light) {
+  :root {
+    --hamburger-bar-color: black;
+  }
+}
+
+
+// 💭 -----------------------------
+// Base toggle
+// 💭 -----------------------------
+.toggle {
+  cursor: pointer;
+  display: grid;
+  height: var(--size);
+  place-items: center;
+  position: relative;
+  width: var(--size);
+
+  // Hamburger variant (default)
+  &.hamburger {
+    .hamburger-bars {
+      background: var(--hamburger-bar-color);
+      border-radius: var(--hamburger-bar-radius);
+      height: var(--hamburger-bar-height);
+      position: relative;
+      width: 100%;
+      transition: transform var(--hamburger-bar-transition) ease-in-out;
+
+      &::before,
+      &::after {
+        background: var(--hamburger-bar-color);
+        border-radius: var(--hamburger-bar-radius);
+        content: '';
+        height: var(--hamburger-bar-height);
+        inset: 0;
+        position: absolute;
+        transition: transform var(--hamburger-bar-transition) ease-in-out;
+        width: 100%;
+      }
+
+      &::before {
+        transform: translateY(calc((var(--size) - 3 * var(--hamburger-bar-height)) / -2));
+      }
+
+      &::after {
+        transform: translateY(calc((var(--size) - 3 * var(--hamburger-bar-height)) / 2));
+      }
+    }
+
+    &[aria-expanded="true"] .hamburger-bars {
+      background: transparent;
+
+      &::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      &::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+  }
+
+  // Icon Variant
+  &.icon {
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+    background: var(--background);
+  }
+
+  // Avatar Variant
+  &.avatar {
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+
+    .avatar-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  // Badge variant 
+  &.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100vw;
+    padding: 0 6px;
+    background: var(--badge-background);
+    color: var(--badge-text-color);
+    font-size: 0.75rem;
+
+    .badge-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
