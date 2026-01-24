@@ -57,7 +57,7 @@ aside {
   padding: 16px;
   pointer-events: all;
   position: fixed;
-  inset: 0 auto 0 0;
+  inset: 0;
   min-height: 100dvh;
   padding-top: calc(var(--nav-height) + 16px);
   transition: opacity 1s ease-in-out;
@@ -65,7 +65,7 @@ aside {
   width: 100dvw; // modern browsers
   z-index: 1; // not necessary - declared to be explicit
 
-  &.closed {
+  &[aria-hidden=true] {
     opacity: 0;
     pointer-events: none;
   }

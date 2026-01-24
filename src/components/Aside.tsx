@@ -5,8 +5,6 @@ import {
   PRACTICAL_EXPERIENCE,
 } from '../data/formData';
 import type { FormValues } from '@/types/cv';
-import clsx from 'clsx';
-
 interface AsideProps {
   id: string;
   isOpen: boolean;
@@ -43,9 +41,9 @@ export default function Aside({
   return (
     <aside
       id={id}
-      className={clsx(!isOpen && 'closed')}
       role="region"
       aria-label="CV editor"
+      aria-hidden={!isOpen}
     >
       <FormSection
         title="General Information"

@@ -3,7 +3,7 @@ import Aside from './components/Aside';
 import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from './data/formData';
 import type { DraftData, CVData, FormValues } from './types/cv';
 import { Main } from './components/Main';
-import { Toggle } from './components/toggleButton';
+import { Toggle } from './components/ToggleButton';
 
 function App() {
   const [cvData, setCvData] = useState<CVData>({
