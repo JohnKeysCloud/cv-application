@@ -64,7 +64,7 @@ export default function FormSection<
   }
       
   return (
-    <form className={`${styles['form']} glass theme-light`}>
+    <form className={styles['form']}>
       <fieldset>
         <legend className={styles['title']}>{title}</legend>
         <div className={styles['form-field-container']}> 

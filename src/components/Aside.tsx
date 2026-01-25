@@ -5,6 +5,8 @@ import {
   PRACTICAL_EXPERIENCE,
 } from '../data/formData';
 import type { FormValues } from '@/types/cv';
+import styles from './Aside.module.scss'
+
 interface AsideProps {
   id: string;
   isOpen: boolean;
@@ -45,24 +47,31 @@ export default function Aside({
       aria-label="CV editor"
       aria-hidden={!isOpen}
     >
-      <FormSection
-        title="General Information"
-        fields={GENERAL_INFORMATION}
-        handleAddToCV={addGeneralInformation}
-        updateDraft={updateGeneralDraft}
-      />
-      <FormSection
-        title="Educational Experience"
-        fields={EDUCATIONAL_EXPERIENCE}
-        handleAddToCV={addEducationalExperience}
-        updateDraft={updateEducationalDraft}
-      />
-      <FormSection
-        title="Practical Experience"
-        fields={PRACTICAL_EXPERIENCE}
-        handleAddToCV={addPracticalExperience}
-        updateDraft={updatePracticalDraft}
-      />
+      <div className={styles['aside-content-wrapper']}>
+        <h2>
+          <pre><code>&lt;aside&gt;</code></pre>
+        </h2>
+        <div className={styles['form-section-container']}>
+          <FormSection
+            title="General Information"
+          fields={GENERAL_INFORMATION}
+          handleAddToCV={addGeneralInformation}
+            updateDraft={updateGeneralDraft}
+          />
+          <FormSection
+            title="Educational Experience"
+          fields={EDUCATIONAL_EXPERIENCE}
+          handleAddToCV={addEducationalExperience}
+            updateDraft={updateEducationalDraft}
+          />
+          <FormSection
+            title="Practical Experience"
+          fields={PRACTICAL_EXPERIENCE}
+          handleAddToCV={addPracticalExperience}
+            updateDraft={updatePracticalDraft}
+          />
+        </div>
+      </div>
     </aside>
   );
 }

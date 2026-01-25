@@ -4,7 +4,6 @@
 @use "./cyclone-variables" as vars;
 @use "./cyclone-reset";
 @use "./cyclone-animations.scss";
-@use "./cyclone-glass.scss";
 @use "./cyclone-mixins.scss" as mixins;
 
 /* Root-level color scheme and font-smoothing */
@@ -48,27 +47,37 @@ nav {
 }
 
 aside {
-  border: 2px solid red;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   opacity: 1;
   overflow: scroll;
-  padding: 16px;
-  pointer-events: all;
   position: fixed;
   inset: 0;
   min-height: 100dvh;
+  padding-inline: 1rem;
   padding-top: calc(var(--nav-height) + 16px);
-  transition: opacity 1s ease-in-out;
+  translate: 0 0;
+  transition-behavior: allow-discrete;
+  transition-duration: 1s;
+  transition-property: display opacity, translate;
   width: 100vw;  // fallback
   width: 100dvw; // modern browsers
   z-index: 1; // not necessary - declared to be explicit
 
-  &[aria-hidden=true] {
+  @starting-style {
     opacity: 0;
-    pointer-events: none;
+    translate: -100% 0;
   }
+
+  &[aria-hidden=true] {
+    display: none;
+    opacity: 0;
+    translate: 100% 0;
+  }
+}
+
+h2 {
+  font-family: 'pixeBoy';
+  font-size: 3rem;
+  margin-inline: auto;
 }
 
 /* Light mode overrides */

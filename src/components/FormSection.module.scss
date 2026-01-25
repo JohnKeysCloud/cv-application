@@ -1,8 +1,11 @@
 /* src/components/FormSection.module.scss */
 
 .form {
-  border-radius: 16px;
-  padding: 8px 16px;
+  border-radius: 6rem;
+  background: #212121;
+  box-shadow: inset 17px 17px 34px #161616,
+              inset -17px -17px 34px #2c2c2c;
+  padding: 3rem 2.5rem 3rem 2.5rem;
 
   &::before,
   &::after {
@@ -11,14 +14,16 @@
 }
 
 .title {
-
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  margin-inline: auto;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 0.5rem;
+  gap: 16px;
+  margin-bottom: 1rem;
 
   input,
   textarea {
