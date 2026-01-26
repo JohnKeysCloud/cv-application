@@ -11,8 +11,30 @@
   color-scheme: light dark;
 
   /* Default text and background colors (dark mode) */
-  color: var(--color-mashumaro);
-  background-color: var(--color-dusk);
+  --default-background: radial-gradient(
+  circle at top left,
+  #3a4f63 0%,
+  #2b3b4a 35%,
+  #212121 70%
+);
+  --default-text-color: var(--color-mashumaro);
+  background: var(--default-background);
+  color: var(--default-text-color);
+
+  // <aside> Dark Neumorphism
+  --aside-background: linear-gradient(
+    145deg,
+    #2a2a2a,
+    #212121
+  );
+  --aside-box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.04),
+                      6px  6px 18px rgba(0, 0, 0, 0.6);
+  --aside-dent-box-shadow: inset 17px 17px 34px #161616,
+                          inset -17px -17px 34px #2c2c2c;
+  --aside-input-box-shadow: inset 28px 28px 81px #1f1f1f,
+                            inset -28px -28px 81px #232323;
+  --aside-button-box-shadow: 8px 8px 16px #1a1a1a,
+                            -8px -8px 16px #282828;
 
   // Dependencies
   --nav-height: 50px; // for fixed element top start point
@@ -27,8 +49,6 @@ html {
 }
 
 body {
-  @include mixins.neutral-background(dark);
-
   display: grid;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   z-index: 0;
@@ -39,7 +59,6 @@ nav {
 
   align-items: center;
   display: flex;
-  margin-bottom: 16px;
   height: var(--nav-height);
   padding: 16px;
   position: relative;
@@ -74,40 +93,62 @@ aside {
   }
 }
 
+main {
+  border: 2px solid red;
+}
+
 h2 {
-  font-family: 'pixeBoy';
-  font-size: 3rem;
+  font-size: 2rem;
   margin-inline: auto;
+}
+
+pre {
+  animation: pulse 3s linear alternate infinite;
+  opacity: 1;
+  text-align: center;
+}
+
+code {
+  color: var(--color-binky);
+  font-family: vars.$font-pixeBoy;
+  font-size: 1.5rem;
+  text-shadow: 0 0 16px var(--color-binky);
+}
+
+button {
+  color: var(--default-text-color); // Prevents Blue Default
 }
 
 /* Light mode overrides */
 @media (prefers-color-scheme: light) {
   :root {
-    color: var(--color-dusk);
-    background-color: var(--color-mashumaro);
+    --default-background: linear-gradient(
+  135deg,
+  #93c2d7 0%,
+  #7faec6 50%,
+  #6b9bb5 100%
+);;
+    --default-text-color: var(--color-dusk);
+
+    // <aside> Light Neumorphism
+    --aside-background: linear-gradient(
+      45deg,
+    #f2f4f7,
+    #e6eaee
+    );
+    --aside-box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.6),
+                        4px  4px 10px rgba(80, 110, 140, 0.08);
+    --aside-dent-box-shadow: inset 15px 15px 30px #989b9d,
+                              inset -15px -15px 30px #ffffff;
+    --aside-input-box-shadow: inset 5px 5px 10px #a5a7a9,
+                              inset -5px -5px 10px #ffffff;
+    --aside-button-box-shadow: 8px 8px 9px #d0d4d6,
+                              -8px -8px 9px #ffffff;
+
   }
 
-  body {
-    @include mixins.neutral-background(light);
-  }
   nav {
     @include mixins.frosted-gradient(to bottom, light);
-  }
-}
-
-/* Dark mode overrides (reinforces defaults) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: var(--color-mashumaro);
-    background-color: var(--color-dusk);
-  }
-
-  body {
-    @include mixins.neutral-background(dark);
-  }
-
-  nav {
-    @include mixins.frosted-gradient(to bottom, dark);
   }
 }
 

@@ -3,7 +3,7 @@
 }
 
 #general-draft {
-  border: 1px solid red;
+  border: 1px solid orange;
 }
 
 #education-draft {
@@ -14,8 +14,8 @@
   border: 1px solid chartreuse;
 }
 
-.draft-container {
-}
 
-//youAreHere
-// body:has()
+// ? Each of the above is a draft container
+.draft-container {
+  box-shadow: inset 0 0 33px black;
+}

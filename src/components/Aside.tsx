@@ -41,33 +41,29 @@ export default function Aside({
   addPracticalExperience,
 }: AsideProps) {
   return (
-    <aside
-      id={id}
-      role="region"
-      aria-label="CV editor"
-      aria-hidden={!isOpen}
-    >
-      <div className={styles['aside-content-wrapper']}>
-        <h2>
-          <pre><code>&lt;aside&gt;</code></pre>
-        </h2>
+    <aside id={id} role="region" aria-label="CV editor" aria-hidden={!isOpen}>
+      <div className={styles['aside-content-container']}>
+        <h2>Build Your CV</h2>
+        <pre>
+          <code>&lt;aside&gt;</code>
+        </pre>
         <div className={styles['form-section-container']}>
           <FormSection
             title="General Information"
-          fields={GENERAL_INFORMATION}
-          handleAddToCV={addGeneralInformation}
+            fields={GENERAL_INFORMATION}
+            handleAddToCV={addGeneralInformation}
             updateDraft={updateGeneralDraft}
           />
           <FormSection
             title="Educational Experience"
-          fields={EDUCATIONAL_EXPERIENCE}
-          handleAddToCV={addEducationalExperience}
+            fields={EDUCATIONAL_EXPERIENCE}
+            handleAddToCV={addEducationalExperience}
             updateDraft={updateEducationalDraft}
           />
           <FormSection
             title="Practical Experience"
-          fields={PRACTICAL_EXPERIENCE}
-          handleAddToCV={addPracticalExperience}
+            fields={PRACTICAL_EXPERIENCE}
+            handleAddToCV={addPracticalExperience}
             updateDraft={updatePracticalDraft}
           />
         </div>

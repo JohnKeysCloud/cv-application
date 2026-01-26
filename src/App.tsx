@@ -90,6 +90,7 @@ function App() {
   const [isActive, setIsActive] = useState(false);
 
   const ASIDE_ID = 'aside';
+  const MAIN_ID = 'main';
 
   const toggleProps = {
     controlledElementId: ASIDE_ID,
@@ -114,7 +115,7 @@ function App() {
         addEducationalExperience={addEducationalExperience}
         addPracticalExperience={addPracticalExperience}
       />
-      <Main cvData={cvData} draftData={draftData} />
+      <Main id={MAIN_ID} cvData={cvData} draftData={draftData} />
     </>
   );
 }

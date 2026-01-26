@@ -1,10 +1,11 @@
-.aside-content-wrapper {
-  background-color: #212121;
+.aside-content-container {
+  background: var(--aside-background);
   border-radius: 3rem;
+  box-shadow: var(--aside-box-shadow);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  margin-bottom: calc(var(--nav-height) + 16px); // Matches spacing of content wrapper from top of view port
+  padding:2rem;
 }
 
 .form-section-container {

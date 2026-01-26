@@ -3,22 +3,21 @@ import type { CVData, DraftData } from "@/types/cv";
 import { camelToKebab } from "@/utils/text-formatting";
 
 interface MainProps {
+  id: string,
   cvData: CVData,
   draftData: DraftData
 }
 
 // youAreHere
-export function Main({ cvData, draftData }: MainProps) {
+export function Main({ id, cvData, draftData }: MainProps) {
   // const { generalInformation, educationalExperience, practicalE÷xperience } = cvData;
   // const { generalDraft, educationalDraft, practicalDraft } = draftData;  
 
   return (
-    <main>
+    <main id={id}>
       <section id={styles['draft-section']}>
       {Object.entries(draftData).map((dataSet) => {
         const [type, data] = dataSet;
-
-
         return (
           <div
             key={type}
