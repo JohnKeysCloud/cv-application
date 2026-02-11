@@ -1,4 +1,4 @@
-import { camelToKebab } from "../utils/text-formatting";
+import { camelToKebab } from "../library/utilities/text-formatting";
 
 // components/FormSection.tsx
 

@@ -2,7 +2,7 @@ import {
   GENERAL_INFORMATION,
   EDUCATIONAL_EXPERIENCE,
   PRACTICAL_EXPERIENCE,
-} from '../data/formData';
+} from '@/data/formData';
 
 export type FormValues<T extends readonly { key: string }[]> = {
   [K in T[number]['key']]: string | null;

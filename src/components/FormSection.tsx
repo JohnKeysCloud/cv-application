@@ -1,7 +1,7 @@
-import styles from './FormSection.module.scss';
-import { camelToKebab } from '../utils/text-formatting';
+import styles from '@/FormSection.module.scss';
+import { camelToKebab } from '@/library/utilities/text-formatting';
 import { useEffect, useState, type ChangeEvent } from 'react';
-import type { FormValues } from '@/types/cv';
+import type { FormValues } from '@/types/shared.types';
 
 type FieldType<FieldKey extends string = string> = {
   key: FieldKey;

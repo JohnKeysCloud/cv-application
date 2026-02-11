@@ -1,24 +1,7 @@
-import type { MouseEventHandler, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
-import styles from './ToggleButton.module.scss';
-
-//
-// -----------------------------
-// Visual variants
-//
-export type VisualVariant = 'hamburger' | 'icon' | 'avatar' | 'badge';
-
-interface ToggleProps {
-  controlledElementId: string;
-  isControlledElementActive: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-
-  classNames?: string[];
-  ariaLabel?: string;
-  visual?: VisualVariant;
-  iconUrl?: string;
-  children?: ReactNode;
-}
+import styles from '/ToggleButton.module.scss';
+import type { VisualVariant, ButtonToggleProps } from './ButtonToggle.types';
 
 //
 // -----------------------------
@@ -31,7 +14,7 @@ const VISUAL_CLASSES: Record<VisualVariant, keyof typeof styles> = {
   badge: 'badge',
 };
 
-export function Toggle({
+export function ButtonToggle({
   controlledElementId,
   isControlledElementActive,
   onClick,
@@ -40,7 +23,7 @@ export function Toggle({
   visual = 'hamburger',
   iconUrl,
   children,
-}: ToggleProps) {
+}: ButtonToggleProps) {
   //
   // -----------------------------
   // Visual renderer
@@ -49,9 +32,7 @@ export function Toggle({
   function renderVisual(): ReactNode {
     switch (visual) {
       case 'hamburger':
-        return (
-          <div className={styles['hamburger-bars']} />
-        );
+        return <div className={styles['hamburger-bars']} />;
 
       case 'icon':
         return iconUrl ? <img src={iconUrl} alt="" /> : null;

@@ -1,15 +1,15 @@
 import { useCallback, useState } from 'react';
-import Aside from './components/Aside';
-import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from './data/formData';
-import type { DraftData, CVData, FormValues } from './types/cv';
+import Aside from '@/components/Aside';
+import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from '@/data/formData';
+import type { DraftData, CVData, FormValues } from '@/types/shared.types';
 import { Main } from './components/Main';
-import { Toggle } from './components/ToggleButton';
+import { ButtonToggle } from './library/components/ButtonToggle/ButtonToggle';
 
 function App() {
   const [cvData, setCvData] = useState<CVData>({
     generalInformation: null,
-    educationalExperience: [],
     practicalExperience: [],
+    educationalExperience: [],
   });
 
   const [draftData, setDraftData] = useState<DraftData>({
@@ -18,12 +18,6 @@ function App() {
       email: null,
       phoneNumber: null,
     },
-    educationDraft: {
-      schoolName: null,
-      fieldOfStudy: null,
-      dateStarted: null,
-      dateEnded: null,
-    },
     practicalDraft: {
       companyName: null,
       positionTitle: null,
@@ -31,6 +25,12 @@ function App() {
       dateStarted: null,
       dateEnded: null,
     },
+    educationDraft: {
+      schoolName: null,
+      fieldOfStudy: null,
+      dateStarted: null,
+      dateEnded: null,
+    }
   });
 
   const updateGeneralDraft = useCallback((
@@ -42,15 +42,6 @@ function App() {
     }));
   }, []); 
 
-  const updateEducationalDraft = useCallback((
-    educationalDraftData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
-  ): void => {
-    setDraftData((prev) => ({
-      ...prev,
-      educationDraft: educationalDraftData
-    }));
-  }, []);
-
   const updatePracticalDraft = useCallback((
     practicalDraftData: FormValues<typeof PRACTICAL_EXPERIENCE>
   ): void => {
@@ -59,6 +50,18 @@ function App() {
       practicalDraft: practicalDraftData,
     }));
   }, []); 
+
+  const updateEducationalDraft = useCallback(
+    (
+      educationalDraftData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+    ): void => {
+      setDraftData((prev) => ({
+        ...prev,
+        educationDraft: educationalDraftData,
+      }));
+    },
+    []
+  );
 
   const addGeneralInformation = (
     fieldData: FormValues<typeof GENERAL_INFORMATION>
@@ -69,21 +72,21 @@ function App() {
     }));
   };
 
-  const addEducationalExperience = (
-    fieldData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
-  ): void => {
-    setCvData((prev) => ({
-      ...prev,
-      educationalExperience: [...prev.educationalExperience, fieldData],
-    }));
-  };
-
   const addPracticalExperience = (
     fieldData: FormValues<typeof PRACTICAL_EXPERIENCE>
   ): void => {
     setCvData((prev) => ({
       ...prev,
       practicalExperience: [...prev.practicalExperience, fieldData],
+    }));
+  };
+
+  const addEducationalExperience = (
+    fieldData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+  ): void => {
+    setCvData((prev) => ({
+      ...prev,
+      educationalExperience: [...prev.educationalExperience, fieldData],
     }));
   };
 
@@ -102,18 +105,18 @@ function App() {
   return (
     <>
       <nav>
-        <Toggle {...toggleProps} />
+        <ButtonToggle {...toggleProps} />
         {/* TODO: Add view/save as photo/pdf buttons */}
       </nav>
       <Aside
         id={ASIDE_ID}
         isOpen={isActive}
         updateGeneralDraft={updateGeneralDraft}
-        updateEducationalDraft={updateEducationalDraft}
         updatePracticalDraft={updatePracticalDraft}
+        updateEducationalDraft={updateEducationalDraft}
         addGeneralInformation={addGeneralInformation}
-        addEducationalExperience={addEducationalExperience}
         addPracticalExperience={addPracticalExperience}
+        addEducationalExperience={addEducationalExperience}
       />
       <Main id={MAIN_ID} cvData={cvData} draftData={draftData} />
     </>

@@ -1,17 +1,7 @@
-import type { MouseEventHandler, ReactNode } from 'react';
 import clsx from 'clsx';
+import type { ButtonGenericProps } from './Button.Generic.types';
 
-interface ButtonProps {
-  children: ReactNode; 
-  controlledElementId: string;
-  isControlledElementActive: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  type?: 'button' | 'submit' | 'reset'; 
-  classNames?: string[]; 
-  id?: string;
-}
-
-export function Button({
+export function ButtonGeneric({
   children,
   controlledElementId,
   isControlledElementActive,
@@ -19,7 +9,7 @@ export function Button({
   type = 'button',
   classNames = [],
   id
-}: ButtonProps) {
+}: ButtonGenericProps) {
   return (
     <button
       type={type}
