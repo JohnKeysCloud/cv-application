@@ -3,7 +3,7 @@ import type { CvDataType } from '@/types/Main.types';
 const CV_DATA_TYPES: CvDataType[] = [
   'generalDraft',
   'practicalDraft',
-  'educationDraft',
+  'educationalDraft',
 ];
 
 export function isCvDataType(x: string): x is CvDataType {

@@ -1,23 +1,21 @@
 #cv-preview-section {
-
   border: 3px solid yellow;
   padding: 5vw;
-  
+
   #cv-preview {
     aspect-ratio: 8.5 / 11;
     color: whitesmoke;
     padding: 5vw;
     background-color: rgb(55, 55, 55);
 
-    // ? temp
-    // #general-draft {
-    //   border: 1px solid orange;
-    // }
-    // ? temp
+    #general-draft {
+      border: 1px solid orange;
+    }
+
     // #education-draft {
     //   border: 1px solid magenta;
     // }
-    // ? temp
+
     // #practical-draft {
     //   border: 1px solid chartreuse;
     // }
@@ -32,7 +30,6 @@
 
       ul {
         list-style: none;
-
       }
     }
   }
@@ -40,8 +37,8 @@
 
 #cv-printable-viewport {
   border: 10px solid black;
-  // display: flex;  
-  display: none;  
+  // display: flex;
+  display: none;
   justify-content: center;
   padding: 1rem;
 

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import Aside from '@/components/Aside';
-import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from '@/data/formData';
+import { FORM_SECTIONS } from '@/data/formData';
 import type { DraftData, CVData, FormValues } from '@/types/domain.types';
 import { Main } from './components/Main';
 import { ButtonToggle } from './library/components/ButtonToggle/ButtonToggle';
@@ -16,6 +16,7 @@ function App() {
     generalDraft: {
       name: null,
       email: null,
+      title: null,
       phoneNumber: null,
     },
     practicalDraft: {
@@ -25,46 +26,50 @@ function App() {
       dateStarted: null,
       dateEnded: null,
     },
-    educationDraft: {
+    educationalDraft: {
       schoolName: null,
       fieldOfStudy: null,
       dateStarted: null,
       dateEnded: null,
-    }
+    },
   });
 
-  const updateGeneralDraft = useCallback((
-    generalDraftData: FormValues<typeof GENERAL_INFORMATION>
-  ): void => {
-    setDraftData((prev) => ({
-      ...prev,
-      generalDraft: generalDraftData,
-    }));
-  }, []); 
+  const updateGeneralDraft = useCallback(
+    (generalDraftData: FormValues<typeof FORM_SECTIONS.generalDraft>): void => {
+      setDraftData((prev) => ({
+        ...prev,
+        generalDraft: generalDraftData,
+      }));
+    },
+    [],
+  );
 
-  const updatePracticalDraft = useCallback((
-    practicalDraftData: FormValues<typeof PRACTICAL_EXPERIENCE>
-  ): void => {
-    setDraftData((prev) => ({
-      ...prev,
-      practicalDraft: practicalDraftData,
-    }));
-  }, []); 
-
-  const updateEducationalDraft = useCallback(
+  const updatePracticalDraft = useCallback(
     (
-      educationalDraftData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+      practicalDraftData: FormValues<typeof FORM_SECTIONS.practicalDraft>,
     ): void => {
       setDraftData((prev) => ({
         ...prev,
-        educationDraft: educationalDraftData,
+        practicalDraft: practicalDraftData,
       }));
     },
-    []
+    [],
+  );
+
+  const updateEducationalDraft = useCallback(
+    (
+      educationalDraftData: FormValues<typeof FORM_SECTIONS.educationalDraft>,
+    ): void => {
+      setDraftData((prev) => ({
+        ...prev,
+        educationalDraft: educationalDraftData,
+      }));
+    },
+    [],
   );
 
   const addGeneralInformation = (
-    fieldData: FormValues<typeof GENERAL_INFORMATION>
+    fieldData: FormValues<typeof FORM_SECTIONS.generalDraft>,
   ): void => {
     setCvData((prev) => ({
       ...prev,
@@ -73,7 +78,7 @@ function App() {
   };
 
   const addPracticalExperience = (
-    fieldData: FormValues<typeof PRACTICAL_EXPERIENCE>
+    fieldData: FormValues<typeof FORM_SECTIONS.practicalDraft>,
   ): void => {
     setCvData((prev) => ({
       ...prev,
@@ -82,7 +87,7 @@ function App() {
   };
 
   const addEducationalExperience = (
-    fieldData: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+    fieldData: FormValues<typeof FORM_SECTIONS.educationalDraft>,
   ): void => {
     setCvData((prev) => ({
       ...prev,
@@ -98,9 +103,9 @@ function App() {
   const toggleProps = {
     controlledElementId: ASIDE_ID,
     isControlledElementActive: isActive,
-    onClick: () => setIsActive(prev => !prev),
-    classNames: ['aside-toggle']
-  }
+    onClick: () => setIsActive((prev) => !prev),
+    classNames: ['aside-toggle'],
+  };
 
   return (
     <>

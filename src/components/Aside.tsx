@@ -1,9 +1,5 @@
-import styles from '@/components/Aside.module.scss'
-import {
-  GENERAL_INFORMATION,
-  EDUCATIONAL_EXPERIENCE,
-  PRACTICAL_EXPERIENCE,
-} from '@/data/formData';
+import styles from '@/components/Aside.module.scss';
+import { FORM_SECTIONS } from '@/data/formData';
 import FormSection from './FormSection';
 import type { AsideProps } from '@/types/Aside.types';
 
@@ -27,19 +23,19 @@ export default function Aside({
         <div className={styles['form-section-container']}>
           <FormSection
             title="General Information"
-            fields={GENERAL_INFORMATION}
+            fields={FORM_SECTIONS.generalDraft}
             handleAddToCV={addGeneralInformation}
             updateDraft={updateGeneralDraft}
           />
           <FormSection
             title="Practical Experience"
-            fields={PRACTICAL_EXPERIENCE}
+            fields={FORM_SECTIONS.practicalDraft}
             handleAddToCV={addPracticalExperience}
             updateDraft={updatePracticalDraft}
           />
           <FormSection
             title="Educational Experience"
-            fields={EDUCATIONAL_EXPERIENCE}
+            fields={FORM_SECTIONS.educationalDraft}
             handleAddToCV={addEducationalExperience}
             updateDraft={updateEducationalDraft}
           />

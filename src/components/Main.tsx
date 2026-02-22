@@ -1,12 +1,14 @@
 import styles from '@/components/Main.module.scss';
-import { camelToKebab, camelCaseToSentence } from '@/library/utilities/text-formatting';
+import {
+  camelToKebab,
+  camelCaseToSentence,
+} from '@/library/utilities/text-formatting';
 import type { CvDataType, CVHeading, MainProps } from '@/types/Main.types';
 import { isCvDataType } from '@/types/typeguards';
 
 export function Main({ id, cvData, draftData }: MainProps) {
   // cvData reserved for future CV display
-  void cvData;
-  // const { generalDraft, educationDraft, practicalDraft } = draftData;  
+  void cvData; // ? small trick to mark a variable as “intentionally unused.”
 
   return (
     // <main id='main'>
@@ -18,13 +20,14 @@ export function Main({ id, cvData, draftData }: MainProps) {
           Thats where a type guard comes in 💭 */}
           {Object.entries(draftData).map((dataSet) => {
             const [type, data] = dataSet;
-            
-            if (!isCvDataType(type)) throw new Error(`Unexpected draft key: ${type}`);
+
+            if (!isCvDataType(type))
+              throw new Error(`Unexpected draft key: ${type}`);
 
             const headings: Record<CvDataType, CVHeading> = {
               generalDraft: null,
               practicalDraft: 'Experience',
-              educationDraft: 'Education',
+              educationalDraft: 'Education',
             };
 
             return (
@@ -33,7 +36,7 @@ export function Main({ id, cvData, draftData }: MainProps) {
                 id={styles[camelToKebab(type)]}
                 className={styles['draft-container']}
               >
-                <h3>{headings[type] != null && headings[type]}</h3> 
+                <h3>{headings[type] != null && headings[type]}</h3>
                 <ul>
                   {Object.entries(data).map((keyValuePair) => {
                     const [key, value] = keyValuePair;
@@ -48,9 +51,9 @@ export function Main({ id, cvData, draftData }: MainProps) {
               </div>
             );
           })}
-        </section> 
+        </section>
       </div>
-      
+
       {/* intentional inline display of none for now */}
       <div id={styles['cv-printable-viewport']}>
         <section id={styles['cv-printable']}></section>

@@ -1,23 +1,25 @@
-import {
-  GENERAL_INFORMATION,
-  EDUCATIONAL_EXPERIENCE,
-  PRACTICAL_EXPERIENCE,
-} from '@/data/formData';
+import { FORM_SECTIONS } from '@/data/formData';
 import type { FormValues } from '@/types/domain.types';
 
 export interface AsideProps {
   id: string;
   isOpen: boolean;
-  updateGeneralDraft: (data: FormValues<typeof GENERAL_INFORMATION>) => void;
-  updatePracticalDraft: (data: FormValues<typeof PRACTICAL_EXPERIENCE>) => void;
-  updateEducationalDraft: (
-    data: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+  updateGeneralDraft: (
+    data: FormValues<typeof FORM_SECTIONS.generalDraft>,
   ) => void;
-  addGeneralInformation: (data: FormValues<typeof GENERAL_INFORMATION>) => void;
+  updatePracticalDraft: (
+    data: FormValues<typeof FORM_SECTIONS.practicalDraft>,
+  ) => void;
+  updateEducationalDraft: (
+    data: FormValues<typeof FORM_SECTIONS.educationalDraft>,
+  ) => void;
+  addGeneralInformation: (
+    data: FormValues<typeof FORM_SECTIONS.generalDraft>,
+  ) => void;
   addPracticalExperience: (
-    data: FormValues<typeof PRACTICAL_EXPERIENCE>
+    data: FormValues<typeof FORM_SECTIONS.practicalDraft>,
   ) => void;
   addEducationalExperience: (
-    data: FormValues<typeof EDUCATIONAL_EXPERIENCE>
+    data: FormValues<typeof FORM_SECTIONS.educationalDraft>,
   ) => void;
 }

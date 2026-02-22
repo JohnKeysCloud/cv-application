@@ -1,7 +1,5 @@
 import {
-  GENERAL_INFORMATION,
-  EDUCATIONAL_EXPERIENCE,
-  PRACTICAL_EXPERIENCE,
+  FORM_SECTIONS
 } from '@/data/formData';
 
 export type FormValues<T extends readonly { key: string }[]> = {
@@ -9,13 +7,13 @@ export type FormValues<T extends readonly { key: string }[]> = {
 };
 
 export interface CVData {
-  generalInformation: FormValues<typeof GENERAL_INFORMATION> | null;
-  educationalExperience: Array<FormValues<typeof EDUCATIONAL_EXPERIENCE>>;
-  practicalExperience: Array<FormValues<typeof PRACTICAL_EXPERIENCE>>;
+  generalInformation: FormValues<typeof FORM_SECTIONS.generalDraft> | null;
+  educationalExperience: Array<FormValues<typeof FORM_SECTIONS.educationalDraft>>;
+  practicalExperience: Array<FormValues<typeof FORM_SECTIONS.practicalDraft>>;
 }
 
 export type DraftData = {
-  generalDraft: FormValues<typeof GENERAL_INFORMATION>;
-  educationDraft: FormValues<typeof EDUCATIONAL_EXPERIENCE>;
-  practicalDraft: FormValues<typeof PRACTICAL_EXPERIENCE>;
+  generalDraft: FormValues<typeof FORM_SECTIONS.generalDraft>;
+  educationalDraft: FormValues<typeof FORM_SECTIONS.educationalDraft>;
+  practicalDraft: FormValues<typeof FORM_SECTIONS.practicalDraft>;
 };
