@@ -48,12 +48,12 @@ Let us break this down from the inside out:
 Assume we call the helper like this:
 
 ```ts
-type GeneralInfoValues = FieldSectionFieldData<typeof GENERAL_INFORMATION>;
+type GeneralInfoValues = FieldSectionFieldData<typeof FORM_SECTIONS.generalDraft>;
 ```
 
-1. `typeof GENERAL_INFORMATION` gives us the tuple of field objects from `formData.ts`.
-2. `FieldList[number]['key']` becomes `"name" | "email" | "phoneNumber"`.
-3. `Record<...>` maps those keys to `string | null`, creating `{ name: string | null; email: string | null; phoneNumber: string | null; }`.
+1. `typeof FORM_SECTIONS.generalDraft` gives us the tuple of field objects from `formData.ts` (where `FORM_SECTIONS` is the single export).
+2. `FieldList[number]['key']` becomes `"name" | "email" | "title" | "phoneNumber"`.
+3. `Record<...>` maps those keys to `string | null`, creating `{ name: string | null; email: string | null; title: string | null; phoneNumber: string | null; }`.
 4. `FormSectionProps<...>['values']` extracts the `values` prop type from the component, which is the same object type from step 3.
 
 From there, TypeScript enforces the structure every time you pass data around (e.g., `addGeneralInformation(values)`), so typos or missing fields fail at compile time.
@@ -66,13 +66,13 @@ Example from `App.tsx`:
 
 ```ts
 const addGeneralInformation = (
-  values: FieldSectionFieldData<typeof GENERAL_INFORMATION>
+  values: FieldSectionFieldData<typeof FORM_SECTIONS.generalDraft>
 ) => {
   setCvData(prev => ({ ...prev, generalInformation: values }));
 };
 ```
 
-Even though `values` is passed around several layers, TypeScript guarantees the keys match the latest `GENERAL_INFORMATION` definition. Updating the field configuration automatically updates the type everywhere the helper is used.
+Even though `values` is passed around several layers, TypeScript guarantees the keys match the latest `FORM_SECTIONS.generalDraft` definition. Updating the field configuration in `formData.ts` automatically updates the type everywhere the helper is used.
 
 ---
 
@@ -80,7 +80,7 @@ Even though `values` is passed around several layers, TypeScript guarantees the 
 
 - **Generic type parameters** (`FieldList extends ...`)
 - **Indexed access types** (`FieldList[number]['key']`, `...['values']`)
-- **Type inference from runtime data** (`typeof GENERAL_INFORMATION`)
+- **Type inference from runtime data** (`typeof FORM_SECTIONS.generalDraft`)
 - **Utility types** (`Record`)
 - **Reusing component prop types** to avoid duplication
 

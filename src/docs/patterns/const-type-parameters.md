@@ -47,11 +47,11 @@ const state = createStateFromKeys(keys);
 ## Real Usage
 
 ```ts
-// App.tsx
+// App.tsx – form config from FORM_SECTIONS in formData.ts
 const generalInformationState = createStateFromKeys(
-  pluck(GENERAL_INFORMATION, 'key')
+  pluck(FORM_SECTIONS.generalDraft, 'key')
 );
-// Type: Record<"name" | "email" | "phoneNumber", string | null>
+// Type: Record<"name" | "email" | "phoneNumber" | "title", string | null>
 // TypeScript knows EXACTLY which keys exist!
 ```
 
