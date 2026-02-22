@@ -3,7 +3,7 @@ import {
   EDUCATIONAL_EXPERIENCE,
   PRACTICAL_EXPERIENCE,
 } from '@/data/formData';
-import type { FormValues } from '@/types/shared.types';
+import type { FormValues } from '@/types/domain.types';
 
 export interface AsideProps {
   id: string;

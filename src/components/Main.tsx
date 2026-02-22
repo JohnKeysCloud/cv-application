@@ -1,13 +1,15 @@
-import styles from '@/Main.module.scss';
-import type { DataType, Heading, MainProps } from '@/types/Main.types';
-import { camelToKebab } from "@/library/utilities/text-formatting";
+import styles from '@/components/Main.module.scss';
+import { camelToKebab, camelCaseToSentence } from '@/library/utilities/text-formatting';
+import type { CvDataType, CVHeading, MainProps } from '@/types/Main.types';
+import { isCvDataType } from '@/types/typeguards';
 
-// youAreHere
 export function Main({ id, cvData, draftData }: MainProps) {
-  // const { generalInformation, educationalExperience, practicalE÷xperience } = cvData;
+  // cvData reserved for future CV display
+  void cvData;
   // const { generalDraft, educationDraft, practicalDraft } = draftData;  
 
   return (
+    // <main id='main'>
     <main id={id}>
       <div id={styles['cv-preview-section']}>
         <section id={styles['cv-preview']}>
@@ -16,8 +18,10 @@ export function Main({ id, cvData, draftData }: MainProps) {
           Thats where a type guard comes in 💭 */}
           {Object.entries(draftData).map((dataSet) => {
             const [type, data] = dataSet;
+            
+            if (!isCvDataType(type)) throw new Error(`Unexpected draft key: ${type}`);
 
-            const headings: Record<DataType, Heading> = {
+            const headings: Record<CvDataType, CVHeading> = {
               generalDraft: null,
               practicalDraft: 'Experience',
               educationDraft: 'Education',
@@ -29,7 +33,6 @@ export function Main({ id, cvData, draftData }: MainProps) {
                 id={styles[camelToKebab(type)]}
                 className={styles['draft-container']}
               >
-                //! {/* youAreHere */}
                 <h3>{headings[type] != null && headings[type]}</h3> 
                 <ul>
                   {Object.entries(data).map((keyValuePair) => {
@@ -37,8 +40,7 @@ export function Main({ id, cvData, draftData }: MainProps) {
 
                     return (
                       <li key={key}>
-                        <span>{key}:</span>
-                        <span>{value}</span>
+                        {value ? value : `Enter a ${camelCaseToSentence(key)}`}
                       </li>
                     );
                   })}

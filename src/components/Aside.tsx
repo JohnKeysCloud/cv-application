@@ -1,3 +1,4 @@
+import styles from '@/components/Aside.module.scss'
 import {
   GENERAL_INFORMATION,
   EDUCATIONAL_EXPERIENCE,
@@ -5,8 +6,6 @@ import {
 } from '@/data/formData';
 import FormSection from './FormSection';
 import type { AsideProps } from '@/types/Aside.types';
-import styles from '@/Aside.module.scss'
-
 
 export default function Aside({
   id,

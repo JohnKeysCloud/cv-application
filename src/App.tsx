@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import Aside from '@/components/Aside';
 import { GENERAL_INFORMATION, EDUCATIONAL_EXPERIENCE, PRACTICAL_EXPERIENCE } from '@/data/formData';
-import type { DraftData, CVData, FormValues } from '@/types/shared.types';
+import type { DraftData, CVData, FormValues } from '@/types/domain.types';
 import { Main } from './components/Main';
 import { ButtonToggle } from './library/components/ButtonToggle/ButtonToggle';
 

@@ -47,6 +47,6 @@
     "erasableSyntaxOnly": true,
 
     /* ===== Libraries ===== */
-    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
   }
 }

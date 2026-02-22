@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
-import styles from './ToggleButton.module.scss';
+import styles from './ButtonToggle.module.scss';
 import type { VisualVariant, ButtonToggleProps } from './ButtonToggle.types';
 
 //

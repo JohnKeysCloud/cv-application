@@ -3,7 +3,9 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "jsx": "react-jsx",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "outDir": "dist",
+    "rootDir": "src"
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

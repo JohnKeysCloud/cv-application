@@ -1,22 +1,39 @@
 #cv-preview-section {
+
   border: 3px solid yellow;
-
+  padding: 5vw;
+  
   #cv-preview {
-    #general-draft {
-      border: 1px solid orange;
-    }
+    aspect-ratio: 8.5 / 11;
+    color: whitesmoke;
+    padding: 5vw;
+    background-color: rgb(55, 55, 55);
 
-    #education-draft {
-      border: 1px solid magenta;
-    }
-
-    #practical-draft {
-      border: 1px solid chartreuse;
-    }
-
+    // ? temp
+    // #general-draft {
+    //   border: 1px solid orange;
+    // }
+    // ? temp
+    // #education-draft {
+    //   border: 1px solid magenta;
+    // }
+    // ? temp
+    // #practical-draft {
+    //   border: 1px solid chartreuse;
+    // }
     // ? Each of the above is a draft container
+
     .draft-container {
       box-shadow: inset 0 0 33px red;
+
+      h3 {
+        font-size: 3rem;
+      }
+
+      ul {
+        list-style: none;
+
+      }
     }
   }
 }
