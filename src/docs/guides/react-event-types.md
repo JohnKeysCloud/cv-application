@@ -96,31 +96,31 @@ Use this quick reference for the most common scenarios:
 
 ### Event Type Cheat Sheet
 
-| Element | Event Attribute | React Event Type |
-|---------|----------------|------------------|
-| `<button>` | `onClick` | `React.MouseEvent<HTMLButtonElement>` |
-| `<input>` | `onChange` | `React.ChangeEvent<HTMLInputElement>` |
-| `<input>` | `onClick` | `React.MouseEvent<HTMLInputElement>` |
-| `<input>` | `onFocus` | `React.FocusEvent<HTMLInputElement>` |
-| `<input>` | `onBlur` | `React.FocusEvent<HTMLInputElement>` |
-| `<form>` | `onSubmit` | `React.FormEvent<HTMLFormElement>` |
-| `<textarea>` | `onChange` | `React.ChangeEvent<HTMLTextAreaElement>` |
-| `<select>` | `onChange` | `React.ChangeEvent<HTMLSelectElement>` |
-| `<div>` | `onClick` | `React.MouseEvent<HTMLDivElement>` |
-| Any element | `onKeyDown` | `React.KeyboardEvent<HTMLElement>` |
-| Any element | `onKeyUp` | `React.KeyboardEvent<HTMLElement>` |
-| Any element | `onKeyPress` | `React.KeyboardEvent<HTMLElement>` |
+| Element      | Event Attribute | React Event Type                         |
+| ------------ | --------------- | ---------------------------------------- |
+| `<button>`   | `onClick`       | `React.MouseEvent<HTMLButtonElement>`    |
+| `<input>`    | `onChange`      | `React.ChangeEvent<HTMLInputElement>`    |
+| `<input>`    | `onClick`       | `React.MouseEvent<HTMLInputElement>`     |
+| `<input>`    | `onFocus`       | `React.FocusEvent<HTMLInputElement>`     |
+| `<input>`    | `onBlur`        | `React.FocusEvent<HTMLInputElement>`     |
+| `<form>`     | `onSubmit`      | `React.FormEvent<HTMLFormElement>`       |
+| `<textarea>` | `onChange`      | `React.ChangeEvent<HTMLTextAreaElement>` |
+| `<select>`   | `onChange`      | `React.ChangeEvent<HTMLSelectElement>`   |
+| `<div>`      | `onClick`       | `React.MouseEvent<HTMLDivElement>`       |
+| Any element  | `onKeyDown`     | `React.KeyboardEvent<HTMLElement>`       |
+| Any element  | `onKeyUp`       | `React.KeyboardEvent<HTMLElement>`       |
+| Any element  | `onKeyPress`    | `React.KeyboardEvent<HTMLElement>`       |
 
 ### Event Category Reference
 
-| Event Category | React Event Type | Common Uses |
-|---------------|------------------|-------------|
-| Mouse events | `React.MouseEvent<T>` | `onClick`, `onDoubleClick`, `onMouseEnter`, `onMouseLeave` |
-| Keyboard events | `React.KeyboardEvent<T>` | `onKeyDown`, `onKeyUp`, `onKeyPress` |
-| Form events | `React.FormEvent<T>` | `onSubmit` |
-| Change events | `React.ChangeEvent<T>` | `onChange` (inputs, selects, textareas) |
-| Focus events | `React.FocusEvent<T>` | `onFocus`, `onBlur` |
-| Clipboard events | `React.ClipboardEvent<T>` | `onCopy`, `onPaste`, `onCut` |
+| Event Category   | React Event Type          | Common Uses                                                |
+| ---------------- | ------------------------- | ---------------------------------------------------------- |
+| Mouse events     | `React.MouseEvent<T>`     | `onClick`, `onDoubleClick`, `onMouseEnter`, `onMouseLeave` |
+| Keyboard events  | `React.KeyboardEvent<T>`  | `onKeyDown`, `onKeyUp`, `onKeyPress`                       |
+| Form events      | `React.FormEvent<T>`      | `onSubmit`                                                 |
+| Change events    | `React.ChangeEvent<T>`    | `onChange` (inputs, selects, textareas)                    |
+| Focus events     | `React.FocusEvent<T>`     | `onFocus`, `onBlur`                                        |
+| Clipboard events | `React.ClipboardEvent<T>` | `onCopy`, `onPaste`, `onCut`                               |
 
 **Note:** `<T>` represents the HTML element type (e.g., `HTMLButtonElement`, `HTMLInputElement`)
 
@@ -149,9 +149,9 @@ React.SyntheticEvent<T>
 The `<T>` represents the **HTML element type** that triggered the event:
 
 ```typescript
-React.MouseEvent<HTMLButtonElement>  // Event from a button
-React.MouseEvent<HTMLDivElement>     // Event from a div
-React.ChangeEvent<HTMLInputElement>  // Change event from an input
+React.MouseEvent<HTMLButtonElement>; // Event from a button
+React.MouseEvent<HTMLDivElement>; // Event from a div
+React.ChangeEvent<HTMLInputElement>; // Change event from an input
 ```
 
 ### Why Specify the Element Type?
@@ -160,13 +160,13 @@ React.ChangeEvent<HTMLInputElement>  // Change event from an input
 
 ```typescript
 const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  e.currentTarget.disabled = true;  // ✅ TypeScript knows buttons have 'disabled'
-  e.currentTarget.value;             // ❌ Error: buttons don't have 'value'
+  e.currentTarget.disabled = true; // ✅ TypeScript knows buttons have 'disabled'
+  e.currentTarget.value; // ❌ Error: buttons don't have 'value'
 };
 
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  e.currentTarget.value;             // ✅ TypeScript knows inputs have 'value'
-  e.currentTarget.disabled = true;   // ✅ Also valid for inputs
+  e.currentTarget.value; // ✅ TypeScript knows inputs have 'value'
+  e.currentTarget.disabled = true; // ✅ Also valid for inputs
 };
 ```
 
@@ -260,7 +260,7 @@ interface FormSectionProps<
   fields: FieldConfig<FieldKey>;
   values: FieldData;
   onChange: (field: FieldKey, value: string) => void;
-  addToCV: (e) => void;  // ❌ Parameter 'e' implicitly has 'any' type
+  addToCV: (e) => void; // ❌ Parameter 'e' implicitly has 'any' type
 }
 ```
 
@@ -293,7 +293,7 @@ interface FormSectionProps<
   fields: FieldConfig<FieldKey>;
   values: FieldData;
   onChange: (field: FieldKey, value: string) => void;
-  addToCV: (e: React.MouseEvent<HTMLButtonElement>) => void;  // ✅ Typed
+  addToCV: (e: React.MouseEvent<HTMLButtonElement>) => void; // ✅ Typed
 }
 ```
 
@@ -342,7 +342,7 @@ return <input value={value} onChange={handleChange} />;
 ```typescript
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
   e.preventDefault();
-  
+
   const formData = new FormData(e.currentTarget);
   // Process form data
 };
@@ -380,10 +380,10 @@ const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
   // e.target - The element that triggered the event (could be a child)
   // Type: EventTarget (generic, needs type assertion)
   const target = e.target as HTMLElement;
-  
+
   // e.currentTarget - The element the handler is attached to (always the button)
   // Type: HTMLButtonElement (specific, type-safe)
-  e.currentTarget.disabled = true;  // ✅ Type-safe
+  e.currentTarget.disabled = true; // ✅ Type-safe
 };
 ```
 
@@ -391,26 +391,26 @@ const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
 
 ```typescript
 const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  e.preventDefault();        // Prevent default behavior
-  e.stopPropagation();      // Stop event bubbling
-  e.currentTarget;          // The button element (type-safe)
-  e.target;                 // The element that triggered the event
-  e.clientX;                // Mouse X coordinate (MouseEvent specific)
-  e.clientY;                // Mouse Y coordinate (MouseEvent specific)
-  e.shiftKey;               // Was Shift key pressed?
-  e.ctrlKey;                // Was Ctrl/Cmd key pressed?
+  e.preventDefault(); // Prevent default behavior
+  e.stopPropagation(); // Stop event bubbling
+  e.currentTarget; // The button element (type-safe)
+  e.target; // The element that triggered the event
+  e.clientX; // Mouse X coordinate (MouseEvent specific)
+  e.clientY; // Mouse Y coordinate (MouseEvent specific)
+  e.shiftKey; // Was Shift key pressed?
+  e.ctrlKey; // Was Ctrl/Cmd key pressed?
 };
 
 const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-  e.key;                    // The key pressed (e.g., 'Enter', 'a')
-  e.code;                   // Physical key code (e.g., 'KeyA')
-  e.altKey;                 // Was Alt key pressed?
-  e.shiftKey;               // Was Shift key pressed?
+  e.key; // The key pressed (e.g., 'Enter', 'a')
+  e.code; // Physical key code (e.g., 'KeyA')
+  e.altKey; // Was Alt key pressed?
+  e.shiftKey; // Was Shift key pressed?
 };
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  e.target.value;           // The input's current value
-  e.target.checked;         // For checkboxes
+  e.target.value; // The input's current value
+  e.target.checked; // For checkboxes
 };
 ```
 
@@ -438,7 +438,7 @@ const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => { ... }
 
 ```typescript
 interface Props {
-  onClick: (e) => void;  // ❌ Missing type
+  onClick: (e) => void; // ❌ Missing type
 }
 ```
 
@@ -446,7 +446,7 @@ interface Props {
 
 ```typescript
 interface Props {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;  // ✅
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void; // ✅
 }
 ```
 
@@ -586,13 +586,13 @@ interface MouseEvent<
 When you write:
 
 ```typescript
-React.MouseEvent<HTMLButtonElement>
+React.MouseEvent<HTMLButtonElement>;
 ```
 
 TypeScript implicitly treats it as:
 
 ```typescript
-React.MouseEvent<HTMLButtonElement, MouseEvent>
+React.MouseEvent<HTMLButtonElement, MouseEvent>;
 //                                  ^^^^^^^^^^^ Implicit second parameter
 ```
 
@@ -621,7 +621,9 @@ interface ExtendedMouseEvent extends MouseEvent {
   customData: string;
 }
 
-const handleClick = (e: React.MouseEvent<HTMLButtonElement, ExtendedMouseEvent>): void => {
+const handleClick = (
+  e: React.MouseEvent<HTMLButtonElement, ExtendedMouseEvent>,
+): void => {
   // Now TypeScript knows about the extended properties
   console.log(e.nativeEvent.customData);
 };
@@ -639,7 +641,9 @@ type MockMouseEvent = Partial<MouseEvent> & {
   mockProp: boolean;
 };
 
-const mockHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent & { mockProp: boolean }>) => {
+const mockHandler = (
+  e: React.MouseEvent<HTMLButtonElement, MouseEvent & { mockProp: boolean }>,
+) => {
   console.log(e.nativeEvent.mockProp);
 };
 ```
@@ -651,18 +655,15 @@ When you need to handle browser-specific event implementations:
 ```typescript
 // Handling events that might have different native implementations
 type CrossBrowserMouseEvent = MouseEvent & {
-  webkitForce?: number;  // Safari-specific
-  mozPressure?: number;  // Firefox-specific
+  webkitForce?: number; // Safari-specific
+  mozPressure?: number; // Firefox-specific
 };
 
 const handlePressure = (
-  e: React.MouseEvent<HTMLElement, CrossBrowserMouseEvent>
+  e: React.MouseEvent<HTMLElement, CrossBrowserMouseEvent>,
 ): void => {
-  const pressure = 
-    e.nativeEvent.webkitForce ?? 
-    e.nativeEvent.mozPressure ?? 
-    0;
-  
+  const pressure = e.nativeEvent.webkitForce ?? e.nativeEvent.mozPressure ?? 0;
+
   console.log(`Pressure: ${pressure}`);
 };
 ```
@@ -674,12 +675,12 @@ The second type parameter affects what you can access on `e.nativeEvent`:
 ```typescript
 const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
   // e.nativeEvent is typed as MouseEvent (the default second parameter)
-  e.nativeEvent.screenX;  // ✅ Available
-  e.nativeEvent.screenY;  // ✅ Available
-  
+  e.nativeEvent.screenX; // ✅ Available
+  e.nativeEvent.screenY; // ✅ Available
+
   // React's synthetic event properties
-  e.clientX;              // ✅ Available
-  e.clientY;              // ✅ Available
+  e.clientX; // ✅ Available
+  e.clientY; // ✅ Available
 };
 ```
 
@@ -689,10 +690,10 @@ const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
 
 ```typescript
 // ✅ Recommended - Let TypeScript use the default
-React.MouseEvent<HTMLButtonElement>
+React.MouseEvent<HTMLButtonElement>;
 
 // ❌ Unnecessary - Only specify if you have a specific need
-React.MouseEvent<HTMLButtonElement, MouseEvent>
+React.MouseEvent<HTMLButtonElement, MouseEvent>;
 ```
 
 Only explicitly specify the second parameter when:

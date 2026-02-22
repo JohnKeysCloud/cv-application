@@ -28,7 +28,9 @@ type LiteralField = FieldType<'name' | 'email'>; // stricter, type-safe
 
 ```ts
 type FieldConfig<FieldKey extends string> = ReadonlyArray<
-  FieldType<FieldKey> & { type?: 'text' | 'email' | 'tel' | 'date' | 'textarea' }
+  FieldType<FieldKey> & {
+    type?: 'text' | 'email' | 'tel' | 'date' | 'textarea';
+  }
 >;
 ```
 
@@ -40,11 +42,11 @@ Access the type of an element in the array:
 
 ```ts
 const fields = [
-  { key: "name", label: "Name" },
-  { key: "email", label: "Email" }
+  { key: 'name', label: 'Name' },
+  { key: 'email', label: 'Email' },
 ] as const;
 
-type ElementType = typeof fields[number];
+type ElementType = (typeof fields)[number];
 // -> { key: 'name'; label: 'Name' }
 //  | { key: 'email'; label: 'Email' }
 ```
@@ -54,7 +56,7 @@ type ElementType = typeof fields[number];
 Access the `'key'` property from each union member:
 
 ```ts
-type Keys = typeof fields[number]['key'];
+type Keys = (typeof fields)[number]['key'];
 // -> "name" | "email"
 ```
 
@@ -65,7 +67,7 @@ This is how TypeScript knows what keys your values object should have.
 Uses the union of keys to create a typed object for state/values:
 
 ```ts
-Record<typeof fields[number]['key'], string | null>
+Record<(typeof fields)[number]['key'], string | null>;
 // becomes:
 {
   name: string | null;
@@ -81,18 +83,19 @@ Using `const` on generic parameters preserves literal types:
 
 ```ts
 function FormSection<
-  const F extends readonly { key: string; label: string; placeholder: string }[]
->(props: {
-  fields: F;
-  values: Record<F[number]['key'], string | null>;
-})
+  const F extends readonly {
+    key: string;
+    label: string;
+    placeholder: string;
+  }[],
+>(props: { fields: F; values: Record<F[number]['key'], string | null> });
 ```
 
 **What `const` does:**
 
-* **Preserves literals**: `"name"` instead of widening to `string`
-* **Makes readonly**: Prevents mutation (`.pop()`, `.shift()`, etc.)
-* **Enables type inference**: TypeScript infers exact tuple type
+- **Preserves literals**: `"name"` instead of widening to `string`
+- **Makes readonly**: Prevents mutation (`.pop()`, `.shift()`, etc.)
+- **Enables type inference**: TypeScript infers exact tuple type
 
 ## ReadonlyArray vs `as const`
 
@@ -102,8 +105,8 @@ function FormSection<
 const arr: ReadonlyArray<string> = ['a', 'b', 'c'];
 ```
 
-* Can't modify array (no `.push()`, `.pop()`)
-* Elements are still general type `string`, not literal `'a' | 'b' | 'c'`
+- Can't modify array (no `.push()`, `.pop()`)
+- Elements are still general type `string`, not literal `'a' | 'b' | 'c'`
 
 ### `as const` – Value-level deep immutability
 
@@ -112,18 +115,18 @@ const arr = ['a', 'b', 'c'] as const;
 // type: readonly ['a', 'b', 'c']
 ```
 
-* Makes array readonly
-* Makes all nested values **literal types**
+- Makes array readonly
+- Makes all nested values **literal types**
 
 ### Comparison Table
 
-| Feature                    | `ReadonlyArray<T>`         | `as const`                                         |
-| -------------------------- | -------------------------- | -------------------------------------------------- |
-| Read-only protection       | ✅ Yes                      | ✅ Yes                                              |
-| Deep immutability (nested) | ❌ No                       | ✅ Yes                                              |
-| Literal inference          | ❌ No (T is generic)        | ✅ Yes (literal `'name'`, not `string`)             |
-| Used at                    | Type level                 | Value level                                        |
-| When to use                | Explicit type declarations | Fixed config data (like form fields) |
+| Feature                    | `ReadonlyArray<T>`         | `as const`                              |
+| -------------------------- | -------------------------- | --------------------------------------- |
+| Read-only protection       | ✅ Yes                     | ✅ Yes                                  |
+| Deep immutability (nested) | ❌ No                      | ✅ Yes                                  |
+| Literal inference          | ❌ No (T is generic)       | ✅ Yes (literal `'name'`, not `string`) |
+| Used at                    | Type level                 | Value level                             |
+| When to use                | Explicit type declarations | Fixed config data (like form fields)    |
 
 ### Example
 
@@ -136,13 +139,10 @@ const fields1: ReadonlyArray<{ key: string }> = [
 // keys inferred as string
 
 // Using as const
-const fields2 = [
-  { key: 'name' },
-  { key: 'email' },
-] as const;
+const fields2 = [{ key: 'name' }, { key: 'email' }] as const;
 // keys inferred as 'name' | 'email'
 
-type FieldKeys = typeof fields2[number]['key']; 
+type FieldKeys = (typeof fields2)[number]['key'];
 // -> 'name' | 'email' ✅
 ```
 
@@ -163,10 +163,10 @@ type FieldKeys = typeof fields2[number]['key'];
 ```ts
 const generalFields = [
   { key: 'name', label: 'Name', placeholder: 'Enter name' },
-  { key: 'email', label: 'Email', placeholder: 'Enter email' }
+  { key: 'email', label: 'Email', placeholder: 'Enter email' },
 ] as const;
 
-type FieldKeys = typeof generalFields[number]['key'];
+type FieldKeys = (typeof generalFields)[number]['key'];
 // -> 'name' | 'email'
 
 type FormState = Record<FieldKeys, string | null>;
@@ -189,10 +189,10 @@ const state: FormState = {
 
 ## Related Patterns
 
-* [Const Type Parameters](const-type-parameters.md)
-* [TypeScript Generics Guide](../guides/typescript-generics.md)
+- [Const Type Parameters](const-type-parameters.md)
+- [TypeScript Generics Guide](../guides/typescript-generics.md)
 
 ## Further Reading
 
-* [TypeScript: Indexed Access Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)
-* [TypeScript: const Assertions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions)
+- [TypeScript: Indexed Access Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)
+- [TypeScript: const Assertions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions)
